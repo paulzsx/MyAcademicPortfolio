@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAIRLTER</title>
+
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">
+        <img src="failter.png" alt="Logo" class="logo-image" width="100" height="50" />
+        </div>
+        <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="#about-us">About Us</a>
+        <a href="#contact-us">Contact Us</a> <!-- Point to Contact section ID -->
+        </nav>
+        <div class="social-icons">
+        <a href="#" title="Facebook">F</a>
+        <a href="#" title="Google+">G+</a>
+        <a href="#" title="Email">✉</a>
+        <a href="#" title="Instagram">I</a>
+        <a href="#" title="LinkedIn">in</a>
+        </div>
+    </header>
+
+    <!-- Body Section -->
+    <main class="body-section">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                <h1>Air Filter</h1>
+                <p>From pollution to solution – FAIRLTER reimagines waste as a breath of fresh air.</p>
+                <button class="cta-button" onclick="document.querySelector('#bins').scrollIntoView({ behavior: 'smooth' });">GET STARTED</button>
+                </div>
+                <div class="hero-video">
+                <video autoplay muted loop class="video-element">
+                    <source src="homepage.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bin Display Section -->
+        <section id="bins" class="bins-section">
+            <h2>FAIRLTER Bins</h2>
+            <div class="bin-controls-container">
+                <div class="deleted-bins-button-wrapper">
+                    <button id="deleted-bins-btn" class="cta-button" style="padding: 8px 20px; font-size: 14px; background-color: #6c757d; border-color: #6c757d; color: white;">View Deleted Bins</button>
+                </div>
+                <div class="view-map-button-wrapper">
+                    <button id="view-map-btn" class="cta-button" style="padding: 8px 20px; font-size: 14px; background-color: #17a2b8; border-color: #17a2b8; color: white;">View Map</button>
+                </div>
+                <div class="bin-search">
+                    <input type="search" id="bin-search-input" placeholder="Search Bin ID (e.g., 001)">
+                </div>
+                <div class="add-bin-button-wrapper">
+                    <button id="add-bin-btn" class="cta-button" style="padding: 8px 20px; font-size: 14px;">+ Add New Bin</button>
+                </div>
+            </div>
+            <div class="bins-grid">
+                <!-- Bin cards will be dynamically inserted here by script.js -->
+                <p style="text-align:center; width: 100%; color: #555;">Loading bins...</p>
+            </div> <!-- Close .bins-grid -->
+        </section> <!-- Close #bins section -->
+
+        <!-- About Us Section -->
+        <section id="about-us" class="about-us-section">
+             <div class="about-wrapper">
+                 <div class="about-text">
+                 <h2>About FAIRLTER</h2>
+                 <p>
+                     The project is AirFilter. It converts bad smoke into clean air,
+                     helping reduce pollution and improve urban air quality.
+                     Designed using sustainable materials and innovative technology,
+                     FAIRLTER repurposes harmful emissions into breathable oxygen — turning waste into wellness.
+                 </p>
+                 </div>
+                 <div class="about-image">
+                 <img src="prototype.png" alt="FAIRLTER Product View" />
+                 </div>
+             </div>
+        </section>
+
+       <!-- Contact Us Section -->
+<section id="contact-us" class="contact-us-section">
+    <div class="contact-content">
+        <h2>Contact FAIRLTER</h2>
+        <p> Have questions or want to get in touch? We'd love to hear from you. </p>
+
+        <!-- Form Element with ID and inputs with NAME attributes -->
+        <form class="contact-form" id="contact-form">
+
+             <!-- Input for Name -->
+             <input type="text"
+                    name="contact_name"        
+                    placeholder="Your Name"
+                    required />        
+
+              <!-- Input for Email -->
+             <input type="email"
+                    name="contact_email"       
+                    placeholder="Your Email"
+                    required />
+
+              <!-- Text Area for Message -->
+             <textarea name="contact_message"    
+                       placeholder="Your Message"
+                       rows="5"
+                       required></textarea>
+
+             <!-- Submit Button -->
+             <button type="submit" class="cta-button">SEND MESSAGE</button>
+
+         </form>
+         <!-- Paragraph to display success/error messages -->
+         <p id="contact-result-message" style="margin-top: 15px; font-weight: bold;"></p>
+    </div>
+</section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>© 2025 FAIRLTER. All rights reserved.</p>
+    </footer>
+    <!-- Anchor for smooth scrolling to Contact Us from header -->
+    <div id="bottom-anchor" style="height: 1px; position: absolute; bottom: 51px;"></div>
+
+    <!-- ==== MODALS (Static Shells) ==== -->
+    <!-- Bin-specific modals (#bin-X-modal) are generated by script.js -->
+
+    <!-- Deleted Bins Modal -->
+    <div id="deleted-bins-modal" class="modal">
+        <div class="modal-content">
+            <a href="#" class="close">×</a> <!-- Closing handled by JS addModalCloseListeners -->
+            <h2>Deleted Bins</h2>
+            <div class="table-wrapper">
+                <table class="styled-table" id="deleted-bins-table">
+                    <thead>
+                        <tr>
+                            <th>Bin ID</th>
+                            <th>Location</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows populated by updateDeletedBinsView() in JS -->
+                        <tr>
+                            <td colspan="3" style="text-align: center;">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Modal -->
+    <div id="map-modal" class="modal">
+        <div class="modal-content" style="max-width: 90%; width: 1000px;">
+            <a href="#" class="close">×</a> <!-- Closing handled by JS addModalCloseListeners -->
+            <h2>Bin Locations Map</h2>
+            <div id="map-container">
+                <!-- Map will be rendered here by handleViewMap() in JS -->
+            </div>
+        </div>
+    </div>
+    <!-- ==== END MODALS ==== -->
+
+    <!-- Link to your JavaScript file -->
+    <script src="script.js" defer></script>
+
+</body>
+</html>
